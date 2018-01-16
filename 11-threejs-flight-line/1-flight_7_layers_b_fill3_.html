@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../css/earthjs.css">
+    <script type='text/javascript' src="../js/d3.min.js"></script>
+    <script type='text/javascript' src='../js/three.min.js'></script>
+    <script type='text/javascript' src="../js/topojson.min.js"></script>
+    <script type='text/javascript' src='../js/earthjs.js'></script>
+    <style>body {background: #555;}</style>
+</head>
+<body>
+    <svg id="earth-js" class="ej-center"></svg>
+    <canvas id="three-js" class="ej-center"></canvas>
+    <script type='text/javascript' src='./flightline.js'></script>
+    <script>
+        g.register(earthjs.plugins.worldThreejs('../d/world-110m.json'))
+        .register(earthjs.plugins.imageThreejs('../globe/world_texture_1.jpg'),'oceanThreejs')
+        .register(earthjs.plugins.world3dThreejs('../d/world.geometry.json','../globe/blue.jpg',0.95))
+        .register(earthjs.plugins.imageThreejs('../globe/earth_ocean-mask.png'), 'earthThreejs')
+        .register(earthjs.plugins.flightLineThreejs('../data/flights2.json','../globe/point3.png'));
+        g.flightLineThreejs.ready = function(err, csv) {
+            g.flightLineThreejs.data(csv,true,[30,200],100,1);
+        }
+        g.worldThreejs.ready = function(err, json) {
+            g.worldThreejs.data(json);
+            g.clickCanvas.data(json);
+        }
+        g.autorotatePlugin.stop();
+        g.ready(function(){
+            g.create();
+        });
+    </script>
+</body>
+</html>

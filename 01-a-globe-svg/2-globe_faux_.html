@@ -1,0 +1,37 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../css/earthjs.css">
+    <script type='text/javascript' src="../js/d3.min.js"></script>
+    <script type='text/javascript' src="../js/topojson.min.js"></script>
+    <script type='text/javascript' src='../js/earthjs.js'></script>
+</head>
+<body>
+    <svg id="earth-js"></svg>
+    <script>
+        const {offsetWidth, offsetHeight} = d3.select('body').node();
+        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:5,transparent:true})
+        .register(earthjs.plugins.inertiaPlugin())
+        .register(earthjs.plugins.autorotatePlugin())
+        .register(earthjs.plugins.oceanSvg())
+        .register(earthjs.plugins.graticuleSvg())
+        .register(earthjs.plugins.worldSvg('../d/world-110m.json'))
+        .register(earthjs.plugins.fauxGlobeSvg());
+        var o = g._.options;
+        g.inertiaPlugin.onDragStart({
+            app() {
+                o.showCountries = false;
+                o.transparent = false;
+            }
+        });
+        g.inertiaPlugin.onDragEnd({
+            app() {
+                o.showCountries = true;
+                o.transparent = true;
+            }
+        });
+        g.ready(function(){
+            g.create();
+        })
+    </script>
+</body>
+</html>

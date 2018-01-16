@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../css/earthjs.css">
+    <script type='text/javascript' src="../js/d3.min.js"></script>
+    <script type='text/javascript' src='../js/three.min.js'></script>
+    <script type='text/javascript' src="../js/topojson.min.js"></script>
+    <script type='text/javascript' src='../js/earthjs.js'></script>
+    <script type='text/javascript' src='../js/Tween.min.js'></script>
+    <script src="../09-readme/demo/tweening.js"></script>
+</head>
+<body>
+    <div class="input-area left">
+        <input type="checkbox" id="toggle-world3d"/><label for="toggle-world3d">Float 3d</label>
+    </div>
+    <svg id="earth-js"></svg>
+    <canvas id="three-js"></canvas>
+    <script>
+        const {offsetWidth, offsetHeight} = d3.select('body').node();
+        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:5})
+        .register(earthjs.plugins.threejsPlugin())
+        .register(earthjs.plugins.inertiaPlugin())
+        .register(earthjs.plugins.oceanThreejs())
+        .register(earthjs.plugins.worldThreejs('../d/world-110m.json'))
+        .register(earthjs.plugins.world3dThreejs('../d/world.geometry.json','../globe/blue.jpg', 0.95), 'world3d');
+        let data,keys;
+        g.ready(function(){
+            g.create();
+            g.world3d.tween = null;
+            data = g.world3d.data();
+            keys = Object.keys(data);
+            // tweening();
+        });
+
+        d3.select('#toggle-world3d').on('click', () => {
+            if (d3.event.target.checked) {
+                tmax = 30;
+                tweening();
+            } else {
+                tmax = 1;
+            }
+        });
+    </script>
+</body>
+</html>

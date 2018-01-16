@@ -1,0 +1,25 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../css/earthjs.css">
+    <script type='text/javascript' src="../js/d3.min.js"></script>
+    <script type='text/javascript' src="../js/topojson.min.js"></script>
+    <script type='text/javascript' src='../js/earthjs.js'></script>
+</head>
+<body>
+    <svg id="earth-js"></svg>
+    <canvas class="ej-canvas"></canvas>
+    <script>
+        const {offsetWidth, offsetHeight} = d3.select('body').node();
+        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:5, transparent: true})
+        .register(earthjs.plugins.inertiaPlugin())
+        .register(earthjs.plugins.canvasPlugin())
+        .register(earthjs.plugins.autorotatePlugin())
+        .register(earthjs.plugins.graticuleCanvas())
+        .register(earthjs.plugins.pinCanvas('../data/bars.json', '../images/pin.png'));
+        g.canvasPlugin.selectAll('.ej-canvas');
+        g.ready(function(){
+            g.create();
+        })
+    </script>
+</body>
+</html>

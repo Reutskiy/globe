@@ -1,0 +1,19 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="../css/earthjs.css">
+    <script type='text/javascript' src="../js/d3.min.js"></script>
+    <script type='text/javascript' src='../js/earthjs.js'></script>
+    <style>.graticule path{stroke:#ff0101;stroke-width:2;}</style>
+</head>
+<body>
+  <h1>Hello</h1>
+    <svg id="earth-js"/>
+    <script>
+        const {offsetWidth, offsetHeight} = d3.select('body').node();
+        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:5})
+        .register(earthjs.plugins.inertiaPlugin())
+        .register(earthjs.plugins.graticuleSvg())
+        .create();
+    </script>
+</body>
+</html>
