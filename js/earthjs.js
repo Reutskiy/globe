@@ -1389,7 +1389,7 @@ var mousePlugin = (function () {
     window._mouse = _;
 
     if (zoomScale === undefined) {
-        zoomScale = [0, 50000];
+        zoomScale = [0, 0];
     }
 
     function onclick() {
