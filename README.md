@@ -1,2 +1,1 @@
-# globe.github.io
-experiments
+# earthjs.github.io
