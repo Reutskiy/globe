@@ -1363,7 +1363,7 @@ var clickCanvas = (function () {
 
 // Mike Bostock’s Block https://bl.ocks.org/mbostock/7ea1dde508cec6d2d95306f92642bc42
 var mousePlugin = (function () {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { zoomScale: [0, 50000] },
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { zoomScale: [0, 10000] },
         zoomScale = _ref.zoomScale,
         intervalDrag = _ref.intervalDrag;
 
