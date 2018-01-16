@@ -18,7 +18,6 @@
     </style>
 </head>
 <body>
-  <p>123</
     <div class="input-area">
         <button id="auto-rotate">Auto Rotate</button>
         [<button id="line">Line</button>
@@ -30,7 +29,7 @@
     <canvas id="three-js" class="ej-center"></canvas>
     <script type='text/javascript'>
         const {offsetWidth, offsetHeight} = d3.select('body').node();
-        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:5})
+        const g = earthjs({width: offsetWidth, height: offsetHeight, padding:45})
         .register(earthjs.plugins.inertiaPlugin())
         .register(earthjs.plugins.clickCanvas())
         .register(earthjs.plugins.threejsPlugin())
