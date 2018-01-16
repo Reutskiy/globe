@@ -6,7 +6,7 @@ body {
 #earth-js, #three-js, .ej-svg, .ej-canvas, .top {
     position: absolute;
     left: 0;
-    top: 100px;
+    top: 500px;
 }
 .ej-center {
     right: 0;
