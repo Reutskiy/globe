@@ -1057,33 +1057,6 @@ var dotRegion = (function (jsonUrl) {
     };
 });
 
-var zoomPlugin = (function () {
-    /*eslint no-console: 0 */
-    var _ = {};
-
-    function init() {
-        var __ = this._;
-        var s0 = __.proj.scale();
-        var wh = [__.options.width, __.options.height];
-
-        __.svg.call(d3.zoom().on('zoom start end', zoom).scaleExtent([0.1, 5]).translateExtent([[0, 0], wh]));
-
-        function zoom() {
-            var t = d3.event.transform;
-            __.proj.scale(s0 * t.k);
-            __.resize();
-            __.refresh();
-        }
-    }
-
-    return {
-        name: 'zoomPlugin',
-        onInit: function onInit(me) {
-            _.me = me;
-            init.call(this);
-        }
-    };
-});
 
 // KoGor’s Block http://bl.ocks.org/KoGor/5994804
 var hoverCanvas = (function () {
@@ -1363,7 +1336,7 @@ var clickCanvas = (function () {
 
 // Mike Bostock’s Block https://bl.ocks.org/mbostock/7ea1dde508cec6d2d95306f92642bc42
 var mousePlugin = (function () {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { zoomScale: [0, 0] },
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { zoomScale: [0, 50000] },
         zoomScale = _ref.zoomScale,
         intervalDrag = _ref.intervalDrag;
 
@@ -1389,7 +1362,7 @@ var mousePlugin = (function () {
     window._mouse = _;
 
     if (zoomScale === undefined) {
-        zoomScale = [0, 0];
+        zoomScale = [0, 50000];
     }
 
     function onclick() {
